@@ -33,6 +33,13 @@ function plugin(options) {
 
   resolver = new Assets(options);
 
+  var customizeUrl = function (url) {
+    var userCustomizerFn = typeof params.customizeUrl == 'function' ? params.customizeUrl : function () {};
+    var userUrl = userCustomizerFn(url);
+
+    return typeof userUrl != 'undefined' ? userUrl : url;
+  };
+  
   function measure(path, density) {
     return resolver.size(path)
       .then(function correctDensity(size) {
@@ -68,23 +75,23 @@ function plugin(options) {
     .use(functions({
       functions: {
         resolve: function resolve(path) {
-          var normalizedPath = unquote(unescapeCss(path));
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return resolver.url(normalizedPath).then(formatUrl);
         },
         inline: function inline(path) {
-          var normalizedPath = unquote(unescapeCss(path));
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return resolver.data(normalizedPath).then(formatUrl);
         },
         size: function size(path, density) {
-          var normalizedPath = unquote(unescapeCss(path));
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return measure(normalizedPath, density).then(formatSize);
         },
         width: function width(path, density) {
-          var normalizedPath = unquote(unescapeCss(path));
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return measure(normalizedPath, density).then(formatWidth);
         },
         height: function height(path, density) {
-          var normalizedPath = unquote(unescapeCss(path));
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return measure(normalizedPath, density).then(formatHeight);
         }
       }
