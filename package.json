@@ -1,6 +1,6 @@
 {
   "name": "postcss-assets",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "PostCSS plugin to manage assets",
   "keywords": [
     "assets",
@@ -22,7 +22,7 @@
     "Ivan Vlasenko (https://github.com/avanes)",
     "Pascal Duez (http://pascalduez.me)"
   ],
-  "repository": "assetsjs/postcss-assets",
+  "repository": "antixrist/postcss-assets",
   "scripts": {
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "eslint --ignore-path .gitignore . && nyc --reporter=text --reporter=html ./node_modules/ava/cli.js"

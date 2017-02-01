@@ -23,6 +23,10 @@ function formatHeight(measurements) {
   return util.format('%dpx', measurements.height);
 }
 
+function formatRatio(measurements) {
+  return util.format('%d%', (measurements.height / measurements.width * 100));
+}
+
 function plugin(options) {
   var params = options || {};
   var resolver;
@@ -93,6 +97,10 @@ function plugin(options) {
         height: function height(path, density) {
           var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
           return measure(normalizedPath, density).then(formatHeight);
+        },
+        ratio: function height(path, density) {
+          var normalizedPath = unquote(unescapeCss(customizeUrl(path)));
+          return measure(normalizedPath, density).then(formatRatio);
         }
       }
     }));
