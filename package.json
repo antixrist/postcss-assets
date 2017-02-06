@@ -1,5 +1,5 @@
 {
-  "name": "postcss-assets-fork-for-fucking-stupid-yarn",
+  "name": "postcss-assets-fork",
   "version": "4.2.0",
   "description": "PostCSS plugin to manage assets",
   "keywords": [
